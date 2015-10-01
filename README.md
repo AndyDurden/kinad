@@ -6,25 +6,25 @@ Given a sufficient description of the transformations and an initial state, kina
 
 Input information needed:
 -------------------------
-List of species/minima
-Stoiciometry of transformation
-Gibbs Free Activation barrier of transformation (enthalpy barrier is sufficient but not rigorous)
-Rate law exponents (order) of transformation
+List of species/minima <br>
+Stoiciometry of transformation <br>
+Gibbs Free Activation barrier of transformation (enthalpy barrier is sufficient but not rigorous) <br>
+Rate law exponents (order) of transformation <br>
 
 Parameters:
 -----------
-Temperature
-Initial State
-Points in time solved for
+Temperature <br>
+Initial State <br>
+Points in time solved for <br>
 
 
 Output:
 -------
-Concentration at each point in time
-Conversion through each tranformation at each point in time
+Concentration at each point in time <br>
+Conversion through each tranformation at each point in time <br>
 
 
 Usage:
 -------
-Under Construction. Program was originally written for only intramolecular reactions (1:1 stoiciometry and 1st order), and the current usage involves an NxN activation barrier matrix in an input file and is executed with the command:
+Under Construction. Program was originally written for only intramolecular reactions (1:1 stoiciometry and 1st order), and the current usage involves an NxN activation barrier matrix in an input file and is executed with the command: <br>
 python kinetic.py [input file] [output name] [time start (s)] [time end] [time step] [temperature (K)]
