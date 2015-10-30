@@ -1,6 +1,9 @@
 # kinad
 Chemical Kinetics Simulator: solves for concentrations over time in a reaction system
 
+
+**NOT WORKING IN IT'S CURRENT STATE**
+
 Consider a chemical system with a set of potential energy surface minima (or chemical species) and a set of transformations (reactions)
 Given a sufficient description of the transformations and an initial state, kinad solves for the concentration of each species at given points in time.
 
