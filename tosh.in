@@ -1,0 +1,188 @@
+ox abicnr abic acic bbic bcic ab2bc_int pyra pyrb
+
+# 1*ox  -->  1* abicnr
+ox
+1
+abicnr
+1
+1
+18.03032039993
+
+
+# 1*abicnr  -->  1* ox
+abicnr
+1
+ox
+1
+1
+3.63694199987904
+
+
+# 1*abicnr  -->  1* abic
+abicnr
+1
+abic
+1
+1
+12.2457311999056
+
+# 1* abic --> 1*abicnr
+abic
+1
+abicnr
+1
+1
+3.04574279994467
+
+# 1* abic --> 1*acic
+abic
+1
+acic
+1
+1
+11.7662447999746
+
+
+# 1* abic --> 1*ab2bc_int
+abic
+1
+ab2bc_int
+1
+1
+0.6552144000581350
+
+
+# 1* abic --> 1*pyra
+abic
+1
+pyra
+1
+1
+17.2301304000215
+
+# 1* acic --> 1*abic
+acic
+1
+abic
+1
+1
+16.3401935999852
+
+# 1* acic --> 1*bbic
+acic
+1
+bbic
+1
+1
+12.9122423999353
+
+
+# 1* acic --> 1*pyra
+acic
+1
+pyra
+1
+1
+8.53159440000746
+
+
+# 1* bbic --> 1*acic
+bbic
+1
+acic
+1
+1
+16.470734399941
+
+
+# 1* bbic --> 1*bcic
+bbic
+1
+bcic
+1
+1
+21.4971828000221
+
+# 1* bbic --> 1*pyrb 
+bbic
+1
+pyrb
+1
+1
+17.7008303999747
+
+# 1* bcic --> 1*bbic
+bcic
+1
+bbic
+1
+1
+16.0358075999688
+
+# 1* bcic --> ab2bc_int
+bcic
+1
+ab2bc_int
+1
+1
+0.305641200013177
+
+# 1* bcic --> pyrb
+bcic
+1
+pyrb
+1
+1
+3.88798199995872
+
+# 1*ab2bc_int --> abic
+ab2bc_int
+1
+abic
+1
+1
+3.92689320000318
+
+
+# 1*ab2bc_int --> bcic
+ab2bc_int
+1
+bcic
+1
+1
+0.9062543999951270
+
+# 1* pyra --> abic
+pyra
+1
+abic
+1
+1
+54.0978647999797
+
+
+# 1* pyra --> acic
+pyra
+1
+acic
+1
+1
+40.825379999955
+
+# 1* pyrb --> bbic
+pyrb
+1
+bbic
+1
+1
+46.4361239999165
+
+# 1* pyrb --> bcic
+pyrb
+1
+bcic
+1
+1
+38.0846507999538
+
+

@@ -16,7 +16,7 @@ int1 int2
 # 5th: lists rate law reactant exponents
 1
 # 6th: is the Free Energy Activation Barrier of the reaction in kcal/mol
-8.5
+0.10
 # Next line should be empty, this ends the description of a reaction.
 
 # 2* int2  -->  1* int3
