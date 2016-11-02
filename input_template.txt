@@ -1,11 +1,11 @@
 # For systems that have reactions other than intramolecular 1:1 stoiciometry, you'll have to use this input format
 # Hashes can be used to comment out lines.
-# First line gives a name to each structure, separated by spaces
+# First line gives a name to each structure (or PES minimum), separated by spaces
 reactant int1 int2 int3 product
 # Second line must be empty
 
-# Next (non-empty) line starts the first reaction. All reactions should be separated by a blank new line.
-# First line of a reaction lists reactant names
+# Next (non-empty) line starts the first transformation (or reaction). All reactions should be separated by a blank new line.
+# First line of a transformations lists the reactant names
 reactant
 # 2nd: lists reactant stoic. coefficients in the same order as they're listed above
 1
@@ -15,9 +15,9 @@ int1 int2
 1 2
 # 5th: lists rate law reactant exponents
 1
-# 6th: is the Free Energy Activation Barrier of the reaction in kcal/mol
+# 6th: is the Free Energy Activation Barrier of the transformation in kcal/mol
 0.10
-# Next line should be empty, this ends the description of a reaction.
+# Next line should be empty, this ends the description of a transformation.
 
 # 2* int2  -->  1* int3
 int2
@@ -36,5 +36,3 @@ product int2
 10.102
 
 #End the file with a blank new line.
-
-
