@@ -1,3 +1,10 @@
+# This is an older version of the program which 
+# only supports intramolecular transformations,
+# which have 1 -> 1 stoiciometry.
+# These type of systems have the benefit of more simple input files,
+# which can be made as an NxN activation barrier matrix
+# Rather than a file with 5 lines per transformation.
+
 from kinetic import *
 
 # Legacy Functions
