@@ -20,7 +20,7 @@ kb_unit = scipy.constants.physical_constants["Boltzmann constant"] # 1.38e-23  J
 kb = kb_unit[0]
 R_unit = scipy.constants.physical_constants["molar gas constant"] # 8.314 J/(mol*K)
 R = R_unit[0]
-# NOTE: Input energies will be in HARTREES, so we must convert to joules.
+# NOTE: Input energies from gaussian 09 will be in HARTREES, so we must convert to joules.
 hartree_unit = scipy.constants.physical_constants["Hartree energy"] # 4.35e-18 J/Hartree
 hartree = hartree_unit[0]
 joules_per_kcal = 4184
@@ -28,8 +28,7 @@ joules_per_kcal = 4184
 
 
 def rate_constant(Ea, T):
-    # Setting the rate_constant to 0 means no change to the derivative sum; no reaction
-    if Ea == 0 : return 0
+    if Ea == 0 : return 0  # Setting the rate_constant to 0 means no change to the derivative sum; no reaction
     exponent =  math.exp( -(Ea*joules_per_kcal)/(R * T) ) # Using kcal/mol input
     #exponent =  math.exp( -(Ea*hartree)/(R * T) ) # Using Au (Hartree) input. I think this is missing avogadro's number somewhere.
     #print( str(gibbs_activation) + " -> " + str(exponent))
@@ -37,11 +36,11 @@ def rate_constant(Ea, T):
     return rate_constant
 
 
-# Formats T from an input file. T describes all transformations in the system and is an input for dydt
-# This function is bad don't judge me
+# Generates T from an input file. T describes all transformations in the system and is an input for dydt
+# This function could be cleaned up a lot.
 def getT(infile, temp):
 
-    # T should be a list of all reactions/transformations X
+    # T (Output) is be a list of every reaction/transformation X
     # X should be in the following format:
     # X = [ A, B, C, D, E, k] Where A-E are lists and k is the rate constant.
     # A = y indexs of Reactants, B = Reactant Stoic. Coefficients
@@ -65,7 +64,7 @@ def getT(infile, temp):
     while i < len(l):
         while Ti < 6:
             if (i<len(l)):
-                while  (l[i][0] == '#') or (l[i][0] == "\n"):
+                while  (l[i][0] == '#') or (l[i][0] == "\n"): # skip 
                     i = i+1
                     if i >= len(l): break
                     print(i)
