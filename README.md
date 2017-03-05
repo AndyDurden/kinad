@@ -41,6 +41,21 @@ python kinad [OPTIONS]
 -c, --config=CONFIG_FILE    Specify configuration file, default is config.ini
 
 
+Configuration:
+-------
+All parameters are defined in config.ini and described below:
+
+[parameters]
+**infile**: Name of Input file located in kinad/. For formatting help see input_template.txt or tosh.in (an example)
+**runname**: Name of output folder
+**tstart, tend, tstep**: these three parameters define the points in time solved for. at t=0 the system state is equal to your initial state input.
+**temp**: Temperature of the simulated reaction, a parameter in the rate law equation.
+
+[montecarlo]
+**montecarlo**: 1 to calculate uncertainty via monte-carlo trials, or 0 to run without calculating uncertainties. If 1, your input file must include uncertainty of every activation barrier on the same line separated by a space. [Activation barrier] [Uncertainty]
+**monteN**: The number of monte-carlo trials to run. For rigorous statistics typically 1e3-1e6 trials are needed. Note: calculation time should scale linearly with this parameter
+**keepmonte**: If 1, the results of each individual monte-carlo trial will be kept. If 0, these trial results are deleted.
+
 
 To Do:
 ------
