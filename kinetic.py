@@ -27,18 +27,21 @@ joules_per_kcal = 4184
 
 
 
-def rate_constant(Ea, T):
+def rate_constant(Ea, T, uncertainty=0):
     if Ea == 0 : return 0  # Setting the rate_constant to 0 means no change to the derivative sum; no reaction
     exponent =  math.exp( -(Ea*joules_per_kcal)/(R * T) ) # Using kcal/mol input
     #exponent =  math.exp( -(Ea*hartree)/(R * T) ) # Using Au (Hartree) input. I think this is missing avogadro's number somewhere.
     #print( str(gibbs_activation) + " -> " + str(exponent))
-    rate_constant = ( kb * T  / h ) * exponent
+    if uncertainty == 0:
+      rate_constant = ( kb * T  / h ) * exponent
+    else:  # Monte Carlo
+      rate_constant = np.random.normal( (( kb * T  / h ) * exponent), uncertainty, 1)[0]
     return rate_constant
 
 
 # Generates T from an input file. T describes all transformations in the system and is an input for dydt
 # This function could be cleaned up a lot.
-def getT(infile, temp):
+def getT(infile, temp, montecarlo=0):
 
     # T (Output) is be a list of every reaction/transformation X
     # X should be in the following format:
@@ -86,9 +89,15 @@ def getT(infile, temp):
                 
                 # k, rate constant
                 elif Ti == 5:
-                    T[len(T)-1].append( rate_constant(float(l[i]), temp) )
-                    Ti = Ti + 1
-                    print(T[len(T)-1])
+                  if montecarlo == 0:
+                    if len(l[i].split())>1: # In case uncertainty included in input file without monte carlo option
+                      T[len(T)-1].append( rate_constant(float(l[i].split()[0]), temp) ) 
+                    else: T[len(T)-1].append( rate_constant(float(l[i]), temp) )
+                  elif montecarlo == 1:
+                    if len(l[i].split()) < 2: raise Exception("Fatal Error: Monte Carlo uncertainty selected, but no uncertainty is included in the input file.")
+                    T[len(T)-1].append( rate_constant( float(l[i].split()[0]), temp, float(l[i].split()[1])) ) # Monte Carlo
+                  Ti = Ti + 1
+                  print(T[len(T)-1])
                 i = i+1; print(i)
 
         if i >= len(l): break
@@ -105,23 +114,6 @@ def getT(infile, temp):
 
 
 
-# Input, 1-d list of rate constants
-def rate_constants(klist):
-    outmatrix = klist[:]
-    i = 0
-    while i < len(klist):
-        if klist[i] != 0:
-            gibbs_activation = float(klist[i])
-            exponent =  math.exp( -(gibbs_activation*joules_per_kcal)/(R * T) ) # Using kcal/mol input
-		    #exponent =  math.exp( -(gibbs_activation*hartree)/(R * T) ) # Using Au (Hartree) input. I think this is missing avogadro's number somewhere.
-            #print( str(gibbs_activation) + " -> " + str(exponent))
-            rate_constant = ( kb * T  / h ) * exponent
-            print( str(gibbs_activation) + " -> " + str(rate_constant)+"\n")
-	    # Setting the rate_constant to 0 means no change to the sum calculating the derivative, i.e. there is no path between those two structures
-        else: rate_constant = 0
-        outmatrix[i] = rate_constant
-        i = i +1
-    return outmatrix
 
 
 
@@ -149,13 +141,6 @@ def dydt(y, t, T, output_components = 0):
         # Reaction Rate = k * A[0]**E[0] * A[1] * E[1] *...
         dTdt[i] = k
         for j in range(0,len(X[0])):
-            # something is screwed up about this j index.
-            # I think i fixed it...
-            #print("T[i] = " + str(T[i]))
-            #print("dTdt[i] = " +str(dTdt[i]))
-            #print("y[j] = " + str(y[(X[0][j])]))
-            #print("X[4][j] = "+ str(X[4][j]))
-            #if dTdt[i] ==
             dTdt[i] = dTdt[i] * y[(X[0][j])]**(X[4][j]) # A[i2]**E[i2]
     # Now for each component we sort through T and calculate dy[i]/dt
     for i in range(0,len(y)):
@@ -173,20 +158,10 @@ def dydt(y, t, T, output_components = 0):
                 dyTdt[i][j] = dyTdt[i][j] + (coeff * dTdt[j] )
                 dydt[i] = dydt[i] + (coeff * dTdt[j] )
     if output_components == 1: return dyTdt
-    dydtsum = 0
-    for i in dydt: dydtsum = dydtsum + i
     return dydt
         
 
-import pickle
-# Excel can copy/paste stuff separated by newlines, so lets format our data that way
-def excelwrite(list, filename, listrep=0):
-    outfile = open(str(filename), 'w')
-    if listrep == 1:
-        pickle.dump(list, outfile)
-    else:
-        for item in list: outfile.write(str(item)+'\n')
-    return outfile.close()
+
 
 
 

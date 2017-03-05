@@ -15,8 +15,8 @@ int1 int2
 1 2
 # 5th: lists rate law reactant exponents
 1
-# 6th: is the Free Energy Activation Barrier of the transformation in kcal/mol
-0.10
+# 6th: is the Free Energy Activation Barrier of the transformation in kcal/mol, and OPTIONAL uncertainty
+0.10 0.005
 # Next line should be empty, this ends the description of a transformation.
 
 # 2* int2  -->  1* int3
@@ -33,6 +33,6 @@ int1 int3
 product int2
 1 1
 2 1.2012
-10.102
+10.102 0.01
 
 #End the file with a blank new line.
