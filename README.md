@@ -7,12 +7,15 @@ Consider a chemical system with a set of potential energy surface minima (or che
 
 Given a sufficient description of the transformations and an initial state, kinad solves for the concentration of each species at given points in time.
 
+Uncertainty may be calculated via a monte-carlo method.
+
 
 Input information needed:
 -------------------------
 List of species/minima <br>
 Stoiciometry of transformation <br>
 Gibbs Free Activation barrier of transformation (enthalpy barrier may be sufficient but not rigorous [1]) <br>
+[Optional Uncertainty of Activation Barriers]
 Rate law exponents (order) of transformation <br>
 
 **See the input template when setting up an input file**
@@ -33,14 +36,15 @@ Conversion through each tranformation at each point in time <br>
 
 Usage:
 -------
-python kinad [input file] [output name] [time start (s)] [time end] [time step] [temperature (K)]
+python kinad [OPTIONS]
 
+-c, --config=CONFIG_FILE    Specify configuration file, default is config.ini
 
 
 
 To Do:
 ------
-Create a configuration file which may be used instead of parameters.
+Generate net flow diagram
 
 
 Foot Notes:
