@@ -29,13 +29,16 @@ joules_per_kcal = 4184
 
 def rate_constant(Ea, T, uncertainty=0):
     if Ea == 0 : return 0  # Setting the rate_constant to 0 means no change to the derivative sum; no reaction
-    exponent =  math.exp( -(Ea*joules_per_kcal)/(R * T) ) # Using kcal/mol input
-    #exponent =  math.exp( -(Ea*hartree)/(R * T) ) # Using Au (Hartree) input. I think this is missing avogadro's number somewhere.
-    #print( str(gibbs_activation) + " -> " + str(exponent))
     if uncertainty == 0:
+      exponent =  math.exp( -(Ea*joules_per_kcal)/(R * T) ) # Using kcal/mol input
       rate_constant = ( kb * T  / h ) * exponent
+    #exponent =  math.exp( -(Ea*hartree)/(R * T) ) # Using Au (Hartree) input. This is missing avogadro's number
+    #print( str(gibbs_activation) + " -> " + str(exponent))
     else:  # Monte Carlo
-      rate_constant = np.random.normal( (( kb * T  / h ) * exponent), uncertainty, 1)[0]
+      Ea_monte = np.random.normal( Ea, uncertainty, 1)[0]
+      exponent =  math.exp( -(Ea_monte*joules_per_kcal)/(R * T) ) # Using kcal/mol input
+      #rate_constant = np.random.normal( (( kb * T  / h ) * exponent), uncertainty, 1)[0] # Stupid. Why would I randomize after??
+      rate_constant = ( kb * T  / h ) * exponent
     return rate_constant
 
 
