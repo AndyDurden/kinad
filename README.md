@@ -1,5 +1,5 @@
 # kinad
-Chemical Kinetics Simulator: solves for concentrations over time in a reaction system
+Chemical Kinetics Simulator: solves the chemical master equation for concentrations over time in a reaction system
 
 
 
@@ -64,4 +64,4 @@ Generate net flow diagram
 
 Foot Notes:
 ------
-[1]: For some systems, frequency calculations to obtain the Gibbs Free Energy barriers rather than Enthalpy barriers are rather expensive, and depending on the system the entropic factor may or may not be significant. For more information on deciding between enthalpy and gibbs barriers see: http://pubs.acs.org/doi/abs/10.1021/acs.jpca.5b09447
+[1]: For some systems, frequency calculations to obtain the Gibbs Free Energy barriers rather than Enthalpy barriers are rather expensive, and depending on the system the entropic factor may or may not be negligible. For more information on deciding between enthalpy and gibbs barriers see: http://pubs.acs.org/doi/abs/10.1021/acs.jpca.5b09447
