@@ -1,5 +1,5 @@
 # kinad
-Chemical Kinetics Simulator: solves the chemical master equation for concentrations over time in a reaction system
+Chemical Kinetics Simulator: solves the chemical master equation for concentrations over time in a reaction system using elementary chemical kinetic laws.
 
 
 
