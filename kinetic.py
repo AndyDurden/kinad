@@ -156,7 +156,7 @@ def dydt(y, t, T, output_components = 0):
                 dyTdt[i][j] = dyTdt[i][j] + (coeff * dTdt[j] )
             dydt[i] = dydt[i] + (coeff * dTdt[j] )
             if i in X[2]: # Products are GENERATED
-                coeff = X[1][ X[2].index(i) ]
+                coeff = X[3][ X[2].index(i) ]
                 if coeff < 0: coeff=coeff*(-1) # Make sure this is positive
                 dyTdt[i][j] = dyTdt[i][j] + (coeff * dTdt[j] )
                 dydt[i] = dydt[i] + (coeff * dTdt[j] )
